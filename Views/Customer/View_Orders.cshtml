@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVCCrudEntityFramework.Models.Order>
+
+@{
+    ViewBag.Title = "Orders for customer: " + Model.ToList().First().Customer_Id;
+}
+
+    <h2>Orders for customer: @Model.ToList().First().Customer_Id</h2>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Orders", new { id = item.Id }, null) |
+                    @Html.ActionLink("Details", "Details", "Orders", new { id = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Orders", new { id = item.Id }, null)
+                </td>
+            </tr>
+        }
+        @Html.ActionLink("Back to List", "Index")
+
+    </table>

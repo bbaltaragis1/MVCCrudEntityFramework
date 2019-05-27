@@ -21,7 +21,10 @@ namespace MVCCrudEntityFramework.Controllers
         // GET: Orders/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using (DBModels db = new DBModels())
+            {
+                return View(db.Orders.Where(x => x.Id == id).FirstOrDefault());
+            }
         }
 
         // GET: Orders/Create

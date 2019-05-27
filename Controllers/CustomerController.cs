@@ -128,5 +128,14 @@ namespace MVCCrudEntityFramework.Controllers
                 return View();
             }
         }
+
+        // Display all orders attatched to the given customer
+        public ActionResult View_Orders(int id) {
+            using (DBModels db = new DBModels())
+            {
+                return View(db.Orders.Where(x => x.Customer_Id == id).ToList());
+            }
+        }
+
     }
 }
