@@ -19,6 +19,22 @@ namespace MVCCrudEntityFramework.Controllers
                 
         }
 
+        public ActionResult Search(int id)
+        {
+            using (DBModels db = new DBModels())
+            {
+                if (id != 0)
+                {
+                    return View("Index", db.Customers.Where(x => x.Id == id).ToList());
+                }
+                else
+                {
+                    return View("Index", db.Customers.ToList());
+                }
+            }
+        }
+
+
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
